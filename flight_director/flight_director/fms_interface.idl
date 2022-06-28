@@ -1,0 +1,68 @@
+struct LocalPosition {
+  double x;
+  double y;
+  double z;
+};
+
+struct BatteryStatus {
+  float percentage;
+  float temperature;
+  float charge;
+  float capacity;
+  string state;
+  string health;
+};
+
+enum DroneState {
+  UNKNOWN,
+  CHARGING,
+  IDLE,
+  RUNNING,
+  EMERGENCY
+};
+
+enum DirectorState {
+  INITIALIZING,
+  READY,
+  STARTING,
+  EXECUTING,
+  PAUSING,
+  FINISH,
+  RETURNING_TO_HOME
+};
+
+struct DroneStatus {
+  @key string id;
+  string name;
+  string model;
+  string current_mission_id;
+  string current_task_index;
+  string flight_mode;
+  LocalPosition position;
+  DroneState drone_state;
+  DirectorState director_state;
+  BatteryStatus battery_state;
+};
+
+enum DroneCommand {
+  START,
+  PAUSE,
+  RESUME,
+  RESTART,
+  SHUTDOWN,
+  RTH
+};
+
+@RPCRequestType
+struct DroneCommandRequest {
+  @key string drone_id;
+  @key int32 corr_id;
+  DroneCommand command;
+};
+
+@RPCReplyType
+struct DroneCommandReply {
+  @key string drone_id;
+  @key int32 corr_id;
+  int32 result;
+};

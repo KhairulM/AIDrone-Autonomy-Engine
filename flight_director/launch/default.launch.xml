@@ -1,0 +1,21 @@
+<launch>
+  <arg name="drone_id" default="drone_mac_address"/>
+  <arg name="drone_name" default="drone1"/>
+  <arg name="drone_model" default="levia_v1"/>
+
+  <arg name="api_server_url" default="http://localhost:6868/api/v1"/>
+  <arg name="mission_config_id" default="latest"/>
+
+  <push-ros-namespace namespace="levia"/>
+  <node pkg="flight_director" exec="api_server_node">
+    <param name="api_server_url" value="$(var api_server_url)"/>
+  </node>
+  <node pkg="flight_director" exec="director_node">
+    <param name="drone_id" value="$(var drone_id)"/>
+    <param name="drone_name" value="$(var drone_name)"/>
+    <param name="drone_model" value="$(var drone_model)"/>
+    
+    <param name="mission_config_id" value="$(var mission_config_id)"/>
+  </node>
+  <node pkg="mission_executor" exec="executor_node"/>
+</launch>

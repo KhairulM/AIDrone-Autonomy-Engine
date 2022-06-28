@@ -1,0 +1,18 @@
+drone_msgs/Mission mission
+int16 start_index
+---
+# result constants
+int16 EXECUTION_SUCCESS=0
+int16 EXECUTION_CANCELLED=1
+int16 EXECUTION_STARTING=2
+int16 EXECUTION_FAILED=-1
+int16 ARGUMENT_ERROR=-2
+int16 OTHER_ERROR=-512 
+
+int16 result
+string error_string ""
+---
+drone_msgs/Task current_task
+int16 current_task_index
+int16 current_task_result
+string current_task_error_string ""

@@ -1,0 +1,5 @@
+string id
+---
+drone_msgs/Mission mission
+bool success
+string error_string ""

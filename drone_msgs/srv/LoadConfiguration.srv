@@ -1,0 +1,5 @@
+string id
+---
+drone_msgs/Configuration configs
+bool success
+string error_string ""
